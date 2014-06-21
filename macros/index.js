@@ -22,5 +22,11 @@ let VProxy = macro {
 }
 export VProxy;
 
+let unproxy = macro {
+    rule { ($params ...) } => {
+        vvalues.unproxy($params ...)
+    }
+}
+
 operator - 14 { $op } => #{ vvalues.unary("-", $op) }
 export -;
