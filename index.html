@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sweet Virtual Values</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css" >
+  <link rel="stylesheet" href="css/codemirror.css" >
+  <link rel="stylesheet" href="css/theme/default.css" >
+  <style>
+    body {
+      margin: 20px;
+    }
+    .CodeMirror {
+      border: 1px solid #DDD;
+    }
+    .bg-danger {
+      padding: 12px;
+    }
+    .row {
+      margin-bottom: 10px;
+    }
+    .code-label {
+      color: #BBB;
+    }
+    .editor-box hr {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Virtual Values</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Demo</a></li>
+          <li ><a href="#">Project Page</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-6 editor-box">
+        <h4 class="code-label">Original</h4>
+        <hr />
+        <textarea id="editor">function foo() { return 42; }</textarea>
+      </div>
+      <div class="col-sm-6 editor-box">
+        <h4 class="code-label">Compiled</h4>
+        <hr />
+        <textarea id="compiled">function foo$2() { return 42; }</textarea>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-12">
+        <button type="button" class="btn btn-default">Run</button>
+
+        <div class="btn-group" id="btn-examples">
+          <button type="button" id="btn-examples" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Proxy Example <span class="caret"></span>
+          </button>
+          <ul  class="dropdown-menu" role="menu">
+            <li><a href="#">Proxy Example</a>
+              <pre class="hidden">// proxy example</pre>
+            </li>
+            <li><a href="#">Membrane Example</a>
+              <pre class="hidden">// membrane example</pre>
+            </li>
+            <li><a href="#">Complex Numbers Example</a>
+              <pre class="hidden">// complex numbers example</pre>
+            </li>
+          </ul>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p class="bg-danger">Error: </p>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /.container -->
+
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/bootstrap.min.js"></script>
+  <script src="js/libs/codemirror.js"></script>
+  <script src="js/libs/mode/javascript/javascript.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
