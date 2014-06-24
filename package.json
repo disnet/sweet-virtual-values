@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "yargs": "1.2.x",
-    "sweet.js": "0.6.x"
+    "sweet.js": "^0.6.1"
   },
   "devDependencies": {
     "grunt-cli": "0.1.x",
@@ -33,7 +33,7 @@
     "expect.js": "^0.3.1",
     "harmony-reflect": "^1.0.0",
     "grunt-sweet.js": "^0.1.4",
-    "sparkler": "^0.3.2"
+    "sparkler": "^0.3.3"
   },
   "repository": {
     "type": "git",
