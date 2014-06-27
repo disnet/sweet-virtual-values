@@ -30,3 +30,6 @@ let unproxy = macro {
 
 operator - 14 { $op } => #{ vvalues.unary("-", $op) }
 export -;
+
+operator + 12 left { $left, $right } => #{ vvalues.binary("+", $left, $right) }
+export +;
