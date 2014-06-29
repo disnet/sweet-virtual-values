@@ -27,8 +27,6 @@ let unproxy = macro {
         vvalues.unproxy($params ...)
     }
 }
-
-operator new 16 { $op }    => #{ vvalues.isVProxy($op) ? vvalues.unary("new", $op) : new $op }
 operator ++ 15 { $op }     => #{ vvalues.unary("++", $op) }
 operator -- 15 { $op }     => #{ vvalues.unary("--", $op) }
 operator ! 14 { $op }      => #{ vvalues.unary("!", $op) }
@@ -38,7 +36,6 @@ operator - 14 { $op }      => #{ vvalues.unary("-", $op) }
 operator typeof 14 { $op } => #{ vvalues.unary("typeof", $op) }
 operator void 14 { $op }   => #{ vvalues.unary("void", $op) }
 operator delete 14 { $op } => #{ vvalues.unary("delete", $op) }
-// export new;
 export ++;
 export --;
 export !;
