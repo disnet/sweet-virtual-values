@@ -35,7 +35,6 @@ operator + 14 { $op }      => #{ vvalues.unary("+", $op) }
 operator - 14 { $op }      => #{ vvalues.unary("-", $op) }
 operator typeof 14 { $op } => #{ vvalues.unary("typeof", $op) }
 operator void 14 { $op }   => #{ vvalues.unary("void", $op) }
-operator delete 14 { $op } => #{ vvalues.unary("delete", $op) }
 export ++;
 export --;
 export !;
@@ -44,7 +43,6 @@ export +;
 export -;
 export typeof;
 export void;
-export delete;
 
 operator * 13 left { $left, $right }          => #{ vvalues.binary("*", $left, $right) }
 operator / 13 left { $left, $right }          => #{ vvalues.binary("/", $left, $right) }
