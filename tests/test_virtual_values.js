@@ -1,9 +1,8 @@
 var expect = require("expect.js");
-virtualValues require("./lib/virtual-values.js")
 
 describe("virtual values", function() {
     it("should override unary minus", function() {
-        var p = new VProxy(4, {
+        var p = new Proxy(4, {
             unary: function(op, value) {
                 return null;
             }
@@ -17,7 +16,7 @@ describe("virtual values", function() {
     });
 
     it("should override binary plus", function() {
-        var p = new VProxy(4, {
+        var p = new Proxy(4, {
             left: function(op, right) {
                 return null;
             },

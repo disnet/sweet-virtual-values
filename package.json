@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "yargs": "1.2.x",
-    "sweet.js": "^0.6.1"
+    "sweet.js": "^0.7.0"
   },
   "devDependencies": {
     "grunt-cli": "0.1.x",
@@ -41,7 +41,8 @@
   },
   "keywords": [
     "macros",
-    "proxies"
+    "proxies",
+    "sweet-macros"
   ],
   "license": "BSD"
 }

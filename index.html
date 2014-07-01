@@ -8,8 +8,7 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/bootstrap.min.css" >
-  <link rel="stylesheet" href="css/codemirror.css" >
-  <link rel="stylesheet" href="css/theme/default.css" >
+ <link rel="stylesheet" href="css/codemirror.css" >
   <style>
     body {
       margin: 20px;
@@ -20,11 +19,17 @@
     .bg-danger {
       padding: 12px;
     }
+    .bg-success {
+      padding: 12px;
+    }
     .row {
       margin-bottom: 10px;
     }
     .code-label {
       color: #BBB;
+    }
+    .success-label {
+      color: #5cb85c;
     }
     .editor-box hr {
       margin-top: 15px;
@@ -43,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Virtual Values</a>
+        <a class="navbar-brand" href="#">Sweet Virtual Values</a>
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -60,35 +65,33 @@
       <div class="col-sm-6 editor-box">
         <h4 class="code-label">Original</h4>
         <hr />
-        <textarea id="editor">function foo() { return 42; }</textarea>
+        <textarea id="editor"></textarea>
       </div>
       <div class="col-sm-6 editor-box">
         <h4 class="code-label">Compiled</h4>
         <hr />
-        <textarea id="compiled">function foo$2() { return 42; }</textarea>
+        <textarea id="compiled"></textarea>
       </div>
     </div>
 
     <div class="row">
 
       <div class="col-md-12">
-        <button type="button" class="btn btn-default">Run</button>
+        <button type="button" id="btn-run" class="btn btn-default">Run</button>
 
-        <div class="btn-group" id="btn-examples">
-          <button type="button" id="btn-examples" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            Proxy Example <span class="caret"></span>
-          </button>
-          <ul  class="dropdown-menu" role="menu">
-            <li><a href="#">Proxy Example</a>
-              <pre class="hidden">// proxy example</pre>
-            </li>
-            <li><a href="#">Membrane Example</a>
-              <pre class="hidden">// membrane example</pre>
-            </li>
-            <li><a href="#">Complex Numbers Example</a>
-              <pre class="hidden">// complex numbers example</pre>
-            </li>
-          </ul>
+        <div class="hidden">
+          <div class="btn-group" id="btn-examples">
+            <button type="button" id="btn-examples" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              Read Example <span class="caret"></span>
+            </button>
+            <ul  class="dropdown-menu" role="menu">
+              <li><a href="#">Read Example</a>
+
+                <pre class="hidden">// This is a comment
+</pre>
+      </li>
+    </ul>
+  </div>
         </div>
 
 
@@ -97,7 +100,8 @@
 
     <div class="row">
       <div class="col-md-12">
-        <p class="bg-danger">Error: </p>
+        <div id="error-box" class="bg-danger" style="display:none"></div>
+        <div id="run-box" class="bg-success" style="display:none"></div>
       </div>
     </div>
   </div>
@@ -108,6 +112,9 @@
   <script src="js/libs/bootstrap.min.js"></script>
   <script src="js/libs/codemirror.js"></script>
   <script src="js/libs/mode/javascript/javascript.js"></script>
+  <script src="js/libs/reflect.js"></script>
+  <script src="js/libs/sweet.js"></script>
+  <script src="lib/vvalues.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
