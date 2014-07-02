@@ -8,11 +8,11 @@ var vvalues = (function() {
 
     // @ (Any, {}) -> VProxy
     function VProxy(value, handler) {
-        var valueShell = {
-            valueOf: function() {
-                return value;
-            }
-        };
+        function ValueShell(value) {this.value = value;}
+        ValueShell.prototype.valueOf = function() {
+            return this.value;
+        }
+        var valueShell = new ValueShell(value);
         var val = match value {
             undefined                   => valueShell,
             null                        => valueShell,
@@ -74,7 +74,7 @@ var vvalues = (function() {
 
     // @ (Any) -> {} or null
     var vunproxy = function(value) {
-        if (value && unproxy.has(value)) {
+        if (isVProxy(value)) {
             return unproxy.get(value);
         }
         return null;
