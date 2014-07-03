@@ -1,17 +1,25 @@
 var vvalues = (function() {
     if (typeof require === "function") {
-        // importing patches Proxy
+        // importing patches Proxy to be in line with the new direct proxies
         require("harmony-reflect");
     }
-    var unproxy = new WeakMap();
+
+    // hold on to all the proxies we create so that we can retrieve the handlers later
+    var unproxyMap = new WeakMap();
+
     var oldProxy = Proxy;
 
-    // @ (Any, {}) -> VProxy
-    function VProxy(value, handler) {
-        function ValueShell(value) {this.value = value;}
-        ValueShell.prototype.valueOf = function() {
-            return this.value;
-        }
+    // primitive values cannot be used a keys inside of a map so we
+    // need to wrap them up in a shell object that returns the original
+    // value when needed
+    function ValueShell(value) {this.value = value;}
+    ValueShell.prototype.valueOf = function() {
+        return this.value;
+    }
+
+    // @ (Any, {}, {}) -> VProxy
+    function VProxy(value, handler, key) {
+
         var valueShell = new ValueShell(value);
         var val = match value {
             undefined                   => valueShell,
@@ -19,20 +27,28 @@ var vvalues = (function() {
             x if typeof x !== 'object'  => valueShell,
             default                     => value
         }
+
         var p = new oldProxy(val, handler)
-        unproxy.set(p, handler);
+        unproxyMap.set(p, {
+            handler: handler,
+            key: key,
+            target: val
+        });
 	    return p;
     }
     this.Proxy = VProxy;
 
     // @ (Any) -> Bool
     function isVProxy(value) {
-        return value && typeof value === 'object' && unproxy.has(value);
+        return value && typeof value === 'object' && unproxyMap.has(value);
     }
 
     // @ (Str, Any) -> Any
     function unary {
-        (operator, op) if isVProxy(op) => unproxy.get(op).unary(operator, op),
+        (operator, op) if isVProxy(op) => {
+            var target = unproxyMap.get(op).target;
+            return unproxyMap.get(op).handler.unary(target, operator, op);
+        },
         ("-", op)                      => -op,
         ("+", op)                      => +op,
         ("++", op)                     => ++op,
@@ -45,8 +61,15 @@ var vvalues = (function() {
 
     // @ (Str, Any, Any) -> Any
     function binary {
-        (operator, left, right) if isVProxy(left)  => unproxy.get(left).left(operator, right),
-        (operator, left, right) if isVProxy(right) => unproxy.get(right).right(operator, left),
+        (operator, left, right) if isVProxy(left)  => {
+            var target = unproxyMap.get(left).target;
+            return unproxyMap.get(left).handler.left(target, operator, right);
+        },
+                            
+        (operator, left, right) if isVProxy(right) => {
+            var target = unproxyMap.get(right).target;
+            return unproxyMap.get(right).handler.right(target, operator, left);
+        },
         ("*", left, right)                         => left * right,
         ("/", left, right)                         => left / right,
         ("%", left, right)                         => left % right,
@@ -72,14 +95,14 @@ var vvalues = (function() {
         ("||", left, right)                        => left || right,
     }
 
+
     // @ (Any) -> {} or null
-    var vunproxy = function(value) {
-        if (isVProxy(value)) {
-            return unproxy.get(value);
+    this.unproxy = function(value, key) {
+        if (isVProxy(value) && unproxyMap.get(value).key === key) {
+            return unproxyMap.get(value).handler;
         }
         return null;
-    }
-    this.unproxy = vunproxy;
+    };
         
     return {
         unary: unary,

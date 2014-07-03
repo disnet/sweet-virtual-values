@@ -1,12 +1,14 @@
 var expect = require("expect.js");
 
 describe("virtual values", function() {
+    var key = {};
+
     it("should override unary minus", function() {
         var p = new Proxy(4, {
-            unary: function(op, value) {
+            unary: function(target, op, value) {
                 return null;
             }
-        });
+        }, {});
 
         expect(- p).to.be(null);
     });
@@ -17,13 +19,13 @@ describe("virtual values", function() {
 
     it("should override binary plus", function() {
         var p = new Proxy(4, {
-            left: function(op, right) {
+            left: function(target, op, right) {
                 return null;
             },
-            right: function(op, left) {
+            right: function(target, op, left) {
                 return null;
             }
-        });
+        }, {});
 
         expect(p + 10).to.be(null);
         expect(10 + p).to.be(null);
