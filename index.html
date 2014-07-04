@@ -15,6 +15,7 @@
     }
     .CodeMirror {
       border: 1px solid #DDD;
+      height: 550px;
     }
     .bg-danger {
       padding: 12px;
@@ -114,7 +115,7 @@
           <div id="run-box" class="bg-success">
             <h4 class="success-label">Success</h4>
             {{#each logs}}
-            <p>Logs: {{ l }}</p>
+            <p>Log: {{ l }}</p>
             {{/each}}
           </div>
           {{/if}}
