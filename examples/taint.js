@@ -50,8 +50,10 @@ function sanitize(str) {
 
 var username = taint("Robert`); DROP TABLE Students;");
 try {
-    queryUser("select * from Students where username = '" + username + "'");
+    queryUser("select * from Students where username = '" +
+              username + "'");
 } catch (e) {
     console.log("Cannot write a tainted value to the DB");
 }
-queryUser("select * from Students where username = '" + sanitize(username));
+queryUser("select * from Students where username = '" +
+          sanitize(username));

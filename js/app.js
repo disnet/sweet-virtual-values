@@ -6,7 +6,7 @@ function cleanerEval(str, oldConsole) {
 		    logArr.push(msg);
             oldConsole.log(msg);
         }
-    }
+    };
 	eval(str);
 	return logArr;
 }
@@ -21,13 +21,12 @@ var examples = [
     {
         id: 2,
         file: "taint.js",
-        title: "Taiting"
+        title: "Tainting"
     }
 ];
 
 var editor, compiled;
 var vvalues = returnExports;
-
 App = Ember.Application.create({});
 
 App.Router.map(function() {
@@ -42,6 +41,8 @@ App.ExamplesController = Ember.ObjectController.extend({
     errors: "",
     logs: [],
     run: false,
+    currentTitle: "Examples",
+
     actions: {
         select: function(example) {
             Ember.$.ajax("examples/" + example.file, {
@@ -49,6 +50,7 @@ App.ExamplesController = Ember.ObjectController.extend({
             }).then(function(code) {
                 editor.setValue(code);
             });
+            this.set("currentTitle", example.title);
         },
         run: function() {
             this.set("errors", "");
@@ -90,18 +92,10 @@ App.ExamplesView = Ember.View.extend({
 	        readOnly: true
         });
     }
-})
+});
+
 App.ExampleRoute = Ember.Route.extend({
     model: function(params) {
         return examples.findBy("id", params.example_id);
     }
-})
-
-
-$(document).ready(function() {
-
-	function updateCompiled() {
-	}
-
-
 });

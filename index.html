@@ -8,14 +8,14 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/bootstrap.min.css" >
- <link rel="stylesheet" href="css/codemirror.css" >
+  <link rel="stylesheet" href="css/codemirror.css" >
   <style>
     body {
       margin: 20px;
     }
     .CodeMirror {
       border: 1px solid #DDD;
-      height: 550px;
+      height: 450px;
     }
     .bg-danger {
       padding: 12px;
@@ -71,7 +71,24 @@
         <div class="col-sm-6 editor-box">
           <h4 class="code-label">Original</h4>
           <hr />
-          <textarea id="editor"></textarea>
+          <textarea id="editor">/*
+ * This is the Sweet Virtual Values editor.
+ * You can try out writing your own virtual values here. The
+ * compiled result will be displayed on the right and calls
+ * to `console.log` will be displayed in the page below.
+ */
+var p = new Proxy(4, {
+    // trap when the proxy is the left-hand operand
+    // `target` is the original proxied value (eg `4` in this case)
+    // `op` is a string representing the operation (eg `"+"`)
+    // `right` is the righ hand operand
+    left: function(target, op, right) {
+        if (op === "+") {
+            return target + right;
+        }
+    }
+}, {});
+console.log(p + 10);</textarea>
         </div>
         <div class="col-sm-6 editor-box">
           <h4 class="code-label">Compiled</h4>
@@ -87,7 +104,7 @@
 
           <div class="btn-group" id="btn-examples">
             <button type="button" id="btn-examples" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-              Read Example <span class="caret"></span>
+              {{currentTitle}} <span class="caret"></span>
             </button>
             <ul  class="dropdown-menu" role="menu">
               {{#each model}}
