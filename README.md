@@ -20,7 +20,7 @@ var username = taint("Robert`); DROP TABLE Students;");
 queryUser("select * from Students where username = '" + username + "'");
 ```
 
-Virtual values are based on the paper ["Virtual Values for Language Extension"](http://disnetdev.com/papers/virtual-values-for-language-extension.html).
+Check out the examples in action [here](http://disnetdev.com/sweet-virtual-values/). Virtual values are based on ideas from the paper [Virtual Values for Language Extension](http://disnetdev.com/papers/virtual-values-for-language-extension.html).
 
 # Install
 
