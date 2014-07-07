@@ -2,10 +2,11 @@
 
 Sweet Virtual Values is an extension to JavaScript [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) that uses [sweet.js](http://sweetjs.org) to allow you to trap operations on primitive values. This means that you can make some pretty wild extensions in just a few lines of code.
 
-For example, in 50 lines of code you can implement complex numbers with native syntax.
+For example, in a few lines of code you can implement complex numbers with native syntax.
 
 ```js
-1.0 + (1.0 * i)
+console.log(1 + (1 * i) - (100 + (3 * i)));
+// logs: -99 + -2i
 ```
 
 Or dynamic taint tracking.
@@ -18,6 +19,8 @@ var username = taint("Robert`); DROP TABLE Students;");
 // taint propagates through string concatenation.
 queryUser("select * from Students where username = '" + username + "'");
 ```
+
+Virtual values are based on the paper ["Virtual Values for Language Extension"](http://disnetdev.com/papers/virtual-values-for-language-extension.html).
 
 # Install
 
