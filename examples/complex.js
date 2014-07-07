@@ -53,7 +53,8 @@ function makeComplex(real, img) {
         right: function(target, op, left) {
             return binaryOps[op](left, 0, real, img);
         }
-    });
+    }, key);
+    return p;
 }
 
 function isComplex(value) {
@@ -65,4 +66,4 @@ function isComplex(value) {
 
 var i = makeComplex(0, 1);
 
-console.log(1 + (1 * i));
+console.log(1 + (1 * i) - (100 + (3 * i)));
