@@ -66,4 +66,6 @@ function isComplex(value) {
 
 var i = makeComplex(0, 1);
 
-console.log(1 + (1 * i) - (100 + (3 * i)));
+var result = 1 + (1 * i) - (100 + (3 * i));
+
+console.log(result.toString());
