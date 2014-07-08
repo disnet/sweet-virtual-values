@@ -26,3 +26,11 @@ node_modules
 
 build/
 *.sublime-*
+/.DS_Store
+/.projectile
+/.tern-port
+/js/.DS_Store
+/lib/harness.js.map
+/lib/vjs.js.map
+/lib/vvalues.js.map
+/tests/.tern-port
