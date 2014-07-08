@@ -17,7 +17,7 @@ var second = makeUnit("second");
 var g = 9.81 * meter / second / second;
 
 g + 1;
-// throws error because unit are not compatible
+// throws error because units are not compatible
 ```
 
 Or dynamic taint tracking.
