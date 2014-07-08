@@ -80,7 +80,7 @@ var p = new Proxy(4, {
     // trap when the proxy is the left-hand operand
     // `target` is the original proxied value (eg `4` in this case)
     // `op` is a string representing the operation (eg `"+"`)
-    // `right` is the righ hand operand
+    // `right` is the right hand operand
     left: function(target, op, right) {
         if (op === "+") {
             return target + right;

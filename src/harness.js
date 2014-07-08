@@ -108,4 +108,4 @@ var vvalues = (function() {
         unary: unary,
         binary: binary
     };
-})();
+})()
