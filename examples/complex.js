@@ -1,3 +1,5 @@
+/** begin complex numbers extension code **/
+
 var key = {};
 
 var unaryOps = {
@@ -65,6 +67,10 @@ function isComplex(value) {
 }
 
 var i = makeComplex(0, 1);
+
+/** end complex numbers extension code **/
+
+// user code for the complex numbers extension
 
 var result = 1 + (1 * i) - (100 + (3 * i));
 

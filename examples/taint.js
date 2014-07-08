@@ -3,7 +3,7 @@
 // on that tainted value propagate the taint.
 
 
-/** begin tainting extension **/
+/** begin tainting extension code **/
 
 // standard unary and binary operations
 var unaryOps = {
@@ -92,10 +92,10 @@ function untaint(value) {
     return value;
 }
 
-/** end tainting extension **/
+/** end tainting extension code **/
 
 
-// User code using the tainting extension
+// User code for the tainting extension
 
 // function to do some DB query related to users.
 // The `user` string *must* be not be tainted.
