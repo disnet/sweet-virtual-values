@@ -22,6 +22,11 @@ var examples = [
         id: 2,
         file: "taint.js",
         title: "Tainting"
+    },
+    {
+        id: 3,
+        file: "units.js",
+        title: "Units of measure"
     }
 ];
 

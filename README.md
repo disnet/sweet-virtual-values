@@ -9,6 +9,17 @@ console.log(1 + (1 * i) - (100 + (3 * i)));
 // logs: -99 + -2i
 ```
 
+Or dynamic units:
+
+```js
+var meter = makeUnit("meter");
+var second = makeUnit("second");
+var g = 9.81 * meter / second / second;
+
+g + 1;
+// throws error because unit are not compatible
+```
+
 Or dynamic taint tracking.
 
 ```js
